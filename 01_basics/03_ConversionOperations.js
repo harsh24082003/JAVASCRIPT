@@ -62,3 +62,5 @@ let someNumber=33
 let stringNumber=String(someNumber) //convert number to string
 console.log(typeof stringNumber) //string
 console.log(stringNumber) //33 (number is converted to string)
+
+
