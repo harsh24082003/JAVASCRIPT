@@ -51,6 +51,8 @@ const books=[
 
 let userBook=books.filter((bk)=> bk.genre==='Fiction')
 
+//With filter, next filter will overwrite the previous filter result
+
 userBook=books.filter((bk)=>{
     return bk.publish>=2020 && bk.genre==='Fiction'
 })

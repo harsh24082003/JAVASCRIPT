@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code</title>
+</head>
+<body style="background-color: #212121; color:#fff">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(LanguageName){
+        const li=document.createElement('li'); // Create a new list item
+        li.innerText=LanguageName; // Set the text of the list item
+        document.querySelector('.language').appendChild(li); // Append the new list item to the existing list
+
+    }
+    addLanguage("Python"); // Call the function to add Python to the list
+    addLanguage("Java"); // Call the function to add Java to the list
+
+    function addOptimalLang(langName){
+        const li=document.createElement('li'); // Create a new list item
+        //here we don't use innerText, here we create textNode in document seperately and append it to the next of li
+        //Then append the li to the existing list, so here we are basically creating a seperate text node and appending it to the seperate li, which is then appended to the existing list named as language
+        li.appendChild(document.createTextNode(langName)); // Create a text node and append it to the list item
+        document.querySelector('.language').appendChild(li); // Append the new list item to the existing list
+    }
+    addOptimalLang("C++"); // Call the function to add C++ to the list
+
+
+    //Edit any list item
+    const secondlang=document.querySelector('li:nth-child(2)'); //Select the second list item
+    //This works only if the elements are of the same type (like div, span, etc.) and have the same parent.
+
+    const newLi=document.createElement('li'); // Create a new list item
+    newLi.textContent="C#"; // Set the text of the new list item
+    secondlang.replaceWith(newLi); // Replace the second list item with the new list item
+
+    //Text content is same like innerText, but it is more efficient and does not parse HTML tags. It is used to set or get the text content of an element.
+
+
+    //ReplaceWith is used to replace an existing element with a new element
+    
+    
+    //Edit 2nd method
+    const firstLang=document.querySelector('li:first-child'); //Select the first list item
+    firstLang.outerHTML='<li>TypeScript</li>'; // Replace the first list item with a new list item using outerHTML
+
+
+    //Remove any list item
+    const lastLang=document.querySelector('li:last-child'); //Select the last list item
+    lastLang.remove(); // Remove the last list item from the list
+</script>
+
+</html>

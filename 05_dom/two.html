@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Chai aur code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const parent=document.querySelector('.parent');
+    console.log(parent);
+    console.log(parent.children); // HTMLCollection
+    console.log(parent.children[0].innerHTML); // Monday
+
+    //We can use for loop to iterate over HTMLCollection and NodeList
+    for(let i=0;i<parent.children.length;i++){
+        console.log(parent.children[i].innerHTML);
+    }
+
+    parent.children[0].style.color='red'; // Change color of first child to red
+    console.log(parent.firstElementChild); // Access first child using firstElementChild
+    console.log(parent.lastElementChild); // Access last child using lastElementChild
+
+    const dayone=document.querySelector('.day');
+    console.log(dayone); // Access first element with class 'day'
+    console.log(dayone.parentElement); // Access parent element of the first 'day' element
+    console.log(dayone.nextElementSibling); // Access next sibling of the first 'day' element
+    console.log(dayone.previousElementSibling); // Access previous sibling of the first 'day' element, here it is null
+
+    console.log("NODES: ", parent.childNodes); // NodeList of all child nodes, including text nodes
+</script>
+</html>
