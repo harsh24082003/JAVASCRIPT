@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing Images</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="flower" src="https://images.pexels.com/photos/32117661/pexels-photo-32117661.jpeg" 
+            alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/32820410/pexels-photo-32820410.jpeg" 
+            alt=""></li>
+            <li><img width="200px" id="date" src="https://images.pexels.com/photos/32478476/pexels-photo-32478476.jpeg" 
+            alt=""></li>
+            <li><img width="200px" id="Greenery" src="https://images.pexels.com/photos/28757578/pexels-photo-28757578.jpeg" 
+            alt=""></li>
+            <li><img width="200px" id="boat" src="https://images.pexels.com/photos/19571069/pexels-photo-19571069.jpeg" 
+            alt=""></li>
+            <li><a href="https://google.com" id="google">Google</a></li>    
+        </ul>
+    </div>
+</body>
+<script>
+    // document.getElementById("owl").onclick=function(){
+    //     alert("Owl is clicked");
+    // }
+
+    // document.getElementById("owl").addEventListener('click', function(){
+    //     alert("Owl is clicked again");    
+    // }, false); //here false is optional, it is used to specify the event propagation phase or bubbling up.
+
+    // document.getElementById('images').addEventListener('click',function(e){
+    //     console.log("Clicke inside the ul");
+    // }, false); //in this case, the event is bubbling up from the image to the ul element. If we click on owl image then first it will
+    //print cliked on owl and then clicked inside the ul.
+
+    //If it is true, then it is in capturing mode or phase, which means if we click on owl image then first it will print clicked 
+    // inside the ul and then clicked on owl.
+
+    // document.getElementById('owl').addEventListener('click',function(e){
+    //     console.log("Clicked on owl");
+    // }, false);
+
+
+    // document.getElementById('images').addEventListener('click',function(e){
+    //     console.log("Clicke inside the ul");
+    // }, true);
+
+    // document.getElementById('owl').addEventListener('click',function(e){
+    //     console.log("Clicked on owl");
+    // }, true);
+
+    
+    // Stopping the propagation phase
+    
+    // document.getElementById('owl').addEventListener('click', function(e){  //Here e tells about the event that is triggered after clicking
+    //     console.log("Owl is clicked");
+    //     e.stopPropagation();    //this will stop the event from bubbling up to the ul element,
+    // }, false)
+
+
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     console.log("Google is clicked");
+    //     e.stopPropagation(); //this will stop the event from bubbling up to the ul element,
+    //     e.preventDefault(); //this will prevent the default action of the link, which is to navigate to the google.com page.
+    // })
+
+
+
+    //Steps to remove images after clicking on them
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.parentNode); //this will give the parent node of the clicked element, which is the li element.
+        
+
+        //We can also do like this
+        // removeIt.parentNode.removeChild(removeIt);  removeIt contains the li element, its parent node will be ul, removeChild 
+        //will remove the li element from the ul element.
+
+
+        //If we click outside the images, on the li element, then it will remove everything because parent of li will be ul and if
+        //if ul is removed then all the images will be removed.
+        //So we can check if the clicked element is an image or not.
+        //We have to add a check for it
+        console.log(e.target.tagName);
+        if(e.target.tagName==='IMG'){
+            console.log(e.target.id);
+            let removeIt=e.target.parentNode; 
+            removeIt.remove();
+        }
+    })
+
+</script>
+</html>

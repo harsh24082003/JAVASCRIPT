@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="">Chai aur Code</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+    let intervalId; //This will hold the interval ID
+    const sayDate=function(str){
+        console.log(str,Date.now());
+    }
+
+    const startInterval=function(){
+        // if(!intervalId){
+            intervalId=setInterval(sayDate, 1000, "hi");
+        // }
+    } //This will execute the sayDate function every 1 second with "hi" as the argument
+    
+    const stopInterval= function(){
+        clearInterval(intervalId);  //can't pass function as argument in clearInterval
+
+    }
+
+    document.querySelector('#start').addEventListener('click',startInterval);
+
+    document.querySelector('#stop').addEventListener('click',stopInterval);
+</script>
+</html>
