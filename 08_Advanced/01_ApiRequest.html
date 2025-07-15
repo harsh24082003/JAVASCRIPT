@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+</head>
+<body style="background-color: #212121; color: #ffffff;">
+    0	UNSENT	Client has been created. open() not called yet.
+    1	OPENED	open() has been called.
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+    3	LOADING	Downloading; responseText holds partial data.
+    4	DONE	The operation is complete.
+
+    <button id="info">Information</button>
+</body>
+<script>
+    const requestURL='https://api.github.com/users/hiteshchoudhary';
+    const xhr=new XMLHttpRequest();
+    let data;
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status===200){
+            data=JSON.parse(this.responseText);  // As this response is in String format, we need to parse it to JSON
+            //In place of "this.responseText", we can also use "xhr.responseText" in this case.
+            console.log(data);
+            console.log(data.followers);
+        }
+    }
+    xhr.open('GET', requestURL, true);
+    xhr.send();
+    document.getElementById('info').addEventListener('click',function(){
+        document.body.innerHTML=`<div>${data.followers}
+        <img src="${data.avatar_url}" alt="Avatar" style="width: 100px; height: 100px;">    
+            </div>`
+    })
+</script>
+</html>
