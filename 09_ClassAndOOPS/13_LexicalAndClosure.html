@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+<script>
+    function makeFunc(){
+        const name = "Mozilla";
+        function displayName(){
+            console.log(name);
+        }
+        return displayName; //Here we not only returing the function but also the lexical scope of it, with which the function is linked
+    }
+    const myFunc=makeFunc();  //This is a closure, as myFunc has access to the lexical scope of makeFunc even after makeFunc has executed and closed.
+    // myFunc();
+</script>
+<script>
+    // document.getElementById("orange").addEventListener("click", function(){
+    //     document.body.style.backgroundColor = "orange";
+    // })
+    // document.getElementById("green").addEventListener("click", function(){
+    //     document.body.style.backgroundColor = "green";
+    // });
+
+    function clickHandler(color){
+        // document.body.style.backgroundColor=`${color}`;
+        return function() { //Due to lexical scoping, this function has access to the color variable defined in the outer function
+            document.body.style.backgroundColor = `${color}`;  //This function is returned and is not called until the button is clicked
+        };
+    }
+
+    document.getElementById("orange").addEventListener("click",clickHandler("orange"));  //Here after click, there should be a function, but we are calling the function directly. So, we have to change the definition of clickHandler to return a function
+    document.getElementById("green").addEventListener("click",clickHandler("green"));
+</script>
+</html>
